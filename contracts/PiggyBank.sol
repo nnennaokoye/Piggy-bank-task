@@ -4,17 +4,15 @@ pragma solidity ^0.8.28;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract PiggyBank {
-    // State variables
+    
     address public immutable accountHolder;
     address public immutable feeCollector;
     string public savingsPurpose;
     uint256 public maturityDate;
     bool public withdrawn;
 
-    // Supported tokens registry
     mapping(address => bool) public supportedTokens;
 
-    // Custom Errors
     error UnauthorizedAccess();          
     error UnsupportedTokenType();       
     error InvalidTokenAmount();    
@@ -22,7 +20,6 @@ contract PiggyBank {
     error MaturityDateNotReached();       
     error InvalidTokenAddress();   
 
-    // Events
     event TokensDeposited(address indexed user, address indexed token, uint256 amount);
     event SavingsWithdrawn(address indexed user, uint256 amount);
     event EmergencyWithdrawal(address indexed user, uint256 penaltyAmount, uint256 receivedAmount);

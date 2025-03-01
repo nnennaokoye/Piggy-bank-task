@@ -12,8 +12,8 @@ async function main() {
   const [deployer] = await ethers.getSigners();
   console.log("Deploying contracts with the account:", deployer.address);
 
-  const purpose = process.argv[2] || "Default Savings Purpose"; // Default  if not provided
-  const duration = parseInt(process.argv[3]) || (30 * 24 * 60 * 60); // Default to 30 days if not provided
+  const purpose = process.argv[2] || "Default Savings Purpose"; 
+  const duration = parseInt(process.argv[3]) || (30 * 24 * 60 * 60); 
 
   const PiggyBankFactory = await ethers.getContractFactory("PiggyFactory");
   const factory = await PiggyBankFactory.deploy(deployer.address);
@@ -23,8 +23,8 @@ async function main() {
   
    const salt = ethers.encodeBytes32String("uniqueSalt");
   
-  // const tx = await factory.createPiggyBank(purpose, duration, salt);
-  // await tx.wait();
+ factory.createPiggyBank(purpose, duration, salt);
+ 
 
   const piggyBanks = await factory.getAllPiggyBanks();
   console.log("Sample PiggyBank deployed to:", piggyBanks);
